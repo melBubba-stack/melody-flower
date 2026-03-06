@@ -1,2 +1,145 @@
-# melody-flower
-Laughing cat
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Melody</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:#050505;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  overflow:hidden;
+  font-family:Georgia,serif;
+  color:white;
+}
+
+.stem{
+  width:6px;
+  height:0;
+  background:#3cff88;
+  position:relative;
+  animation:growStem 3s forwards;
+}
+
+.flower{
+  position:absolute;
+  bottom:100%;
+  left:-47px;
+  width:100px;
+  height:100px;
+  opacity:0;
+  animation:appear 2s forwards 3s;
+}
+
+.petal{
+  width:50px;
+  height:50px;
+  background:#ff4fa3;
+  border-radius:50%;
+  position:absolute;
+  transform-origin:center;
+}
+
+.p1{top:0;left:25px;}
+.p2{top:25px;left:50px;}
+.p3{top:50px;left:25px;}
+.p4{top:25px;left:0;}
+
+.center{
+  width:30px;
+  height:30px;
+  background:gold;
+  border-radius:50%;
+  position:absolute;
+  top:35px;
+  left:35px;
+}
+
+.name{
+  margin-top:80px;
+  font-size:38px;
+  letter-spacing:6px;
+  opacity:0;
+  animation:fadeIn 3s forwards 5s;
+}
+
+.message{
+  margin-top:20px;
+  max-width:350px;
+  text-align:center;
+  font-size:18px;
+  opacity:0;
+  animation:fadeIn 3s forwards 7s;
+}
+
+.petalFall{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:#ff4fa3;
+  border-radius:50%;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+
+@keyframes growStem{
+  to{height:200px;}
+}
+
+@keyframes appear{
+  to{opacity:1;}
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10px);}
+  100%{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stem">
+  <div class="flower">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+  </div>
+</div>
+
+<div class="name">MELODY</div>
+
+<div class="message">
+Some flowers grow toward the sun.<br>
+This one grew toward you.<br><br>
+No matter where life places us,<br>
+you’ll always be a beautiful part of my story.
+</div>
+
+<script>
+function createPetal(){
+  const petal=document.createElement("div");
+  petal.className="petalFall";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=(3+Math.random()*4)+"s";
+  document.body.appendChild(petal);
+
+  setTimeout(()=>petal.remove(),7000);
+}
+
+setInterval(createPetal,500);
+</script>
+
+</body>
+</html>
